@@ -34,6 +34,9 @@
   :type 'string
   :group 'minitest)
 
+(defun bundler-command ()
+  (if minitest-use-bundler "bundle exec" nil))
+
 (defun minitest-buffer-name (file-or-dir)
   (concat "*Minitest " file-or-dir "*"))
 
@@ -80,7 +83,7 @@ The current directory is assumed to be the project's root otherwise."
 (defun minitest--file-command (&optional post-command)
   "Run COMMAND on currently visited file."
   (let ((file-name (buffer-file-name (current-buffer)))
-	(bundle '("bundle" "exec"))
+	(bundle (bundler-command))
         (command (minitest-test-command))
         (zeus-command (if (minitest-zeus-p) "zeus" nil)))
     (if file-name
@@ -103,7 +106,7 @@ The current directory is assumed to be the project's root otherwise."
 (defun minitest-verify-all ()
   "Run all tests."
   (interactive)
-  (minitest--run-command "bundle exec rake"))
+  (minitest--run-command (concat (bundler-command) " " "rake"))
 
 (defun minitest-verify ()
   "Run on current file."

@@ -106,7 +106,7 @@ The current directory is assumed to be the project's root otherwise."
 (defun minitest-verify-all ()
   "Run all tests."
   (interactive)
-  (minitest--run-command (concat (bundler-command) " " "rake")))
+  (minitest--run-command (concat (bundler-command) " " "./bin/rake")))
 
 (defun minitest-verify ()
   "Run on current file."

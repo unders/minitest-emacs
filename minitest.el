@@ -83,7 +83,7 @@ The current directory is assumed to be the project's root otherwise."
 
 (defun minitest--file-command (&optional post-command)
   "Run COMMAND on currently visited file."
-  (let ((file-name (buffer-file-name (current-buffer)))
+  (let ((file-name (file-relative-name (buffer-file-name (current-buffer)) (minitest-project-root)))
 	(bundle (bundler-command))
         (command (minitest-test-command))
         (zeus-command (if (minitest-zeus-p) "zeus" nil)))

@@ -41,7 +41,8 @@
   (concat "*Minitest " file-or-dir "*"))
 
 (defun minitest-test-command ()
-  (if (minitest-zeus-p) "test" '("ruby" "-Ilib:test:spec")))
+  ;;(if (minitest-zeus-p) "test" '("ruby" "-Ilib:test:spec")))
+  (if (minitest-zeus-p) "test" '("./bin/rake test")))
 
 (defun minitest-project-root ()
   "Retrieve the root directory of a project if available.
